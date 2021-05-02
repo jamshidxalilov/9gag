@@ -13,7 +13,7 @@
                             {{ form | crispy }}
                         </div>
                         <div class="card-footer text-right">
-                            <button type="submit" class="btn btn-primary">{{ request.title }}</button>
+                            <button type="submit" class="btn btn-primary">{% if request.button_title %}{{ request.button_title  }}{% else %}{{ request.title }}{% endif %}</button>
                         </div>
                     </div>
                 </form>

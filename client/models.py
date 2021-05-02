@@ -11,4 +11,4 @@ class User(AbstractUser):
         if self.photo:
             return self.photo.url
 
-        return static('img/nophoto.jpg')
+        return static('img/nophoto.png')

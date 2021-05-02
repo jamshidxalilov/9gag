@@ -9,6 +9,7 @@
     <title>{{ request.title }}</title>
     <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.css' %}" />
     <link rel="stylesheet" href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
 </head>
 <body>
     <nav class="navbar navbar-light navbar-expand-lg" style="border-bottom: 1px solid rgba(0,0,0,.1)">
@@ -19,22 +20,23 @@
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav ml-auto">
                 {% if user.is_authenticated %}
-                    <div class="topbar-divider d-none d-sm-block"></div>
-                        <li class="nav-item dropdown no-arrow"> <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ user.username }}</span> <img class="user-avatar rounded-circle" src="{% static 'img/nophoto.jpg' %}"> </a>
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#"> <i class="fa fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile </a>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal"> <i class="fa fa-sign-out fa-sm fa-fw mr-2 text-gray-400"></i> Logout </a>
-                            </div>
-                        </li>
-                    <li class="nav-item{% if crn == "client:logout" %} active{% endif %}">
-                        <a class="nav-link" href="{% url 'client:logout' %}">Chiqish</a>
+                    <li class="cover nav-item dropdown no-arrow"> <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ user.username }}</span> <img class="user-avatar rounded-circle" src="{{ request.user.avatar }}"> </a>
+                        <div class="dropdown-menu dropdown-menu-right shadow" aria-labelledby="userDropdown">
+                            <a class="dropdown-item" href="{% url 'client:profile' %}">
+                                <i class="bi bi-person mr-2"></i> Profile </a>
+                            <a class="dropdown-item" href="{% url 'client:logout' %}">
+                                <i class="bi bi-person-x mr-2"></i> Logout </a>
+                        </div>
                     </li>
+{#                    <li class="nav-item{% if crn == "client:logout" %} active{% endif %}">#}
+{#                        <a class="nav-link" href="{% url 'client:logout' %}">Chiqish</a>#}
+{#                    </li>#}
                 {% else %}
                     <li class="nav-item{% if crn == "client:login" %} active{% endif %}">
                         <a class="nav-link" href="{% url 'client:login' %}">Tizimga kirish</a>
                     </li>
                     <li class="nav-item{% if crn == "client:registration" %} active{% endif %}">
-                        <a href="{% url 'client:registration' %}" style="border: 1px solid blue; border-radius: 35px" type="submit" class="btn btn-primary">Ro'yxatdan o'tish</a>
+                        <a href="{% url 'client:registration' %}" style="border: 1px solid blue; border-radius: 35px" type="submit" class="btn btn-primary"></i>Ro'yxatdan o'tish</a>
                     </li>
                 {% endif %}
             </ul>
