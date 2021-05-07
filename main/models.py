@@ -1,3 +1,5 @@
+import os.path
+
 from django.db import models
 from gag.mixins import TranslateMixin
 from gag.helpers import UploadTo
@@ -26,6 +28,21 @@ class Post(models.Model):
     added_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+@property
+def ext(self):
+    return (os.path.splitext(self.file.name)[1])[1:].lower()
+
+@property
+def is_image(self):
+    return self.ext in ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp']
+
+@property
+def is_video(self):
+    return self.ext in ['mp4', 'mpeg']
+
+@property
+def is_audio(self):
+    return self.ext in ['mp3', 'wav']
 
 class PostComment(models.Model):
     parent = models.ForeignKey('PostComment', on_delete=models.RESTRICT, null=True, default=None)

@@ -1,0 +1,42 @@
+{% load static %}
+
+<nav class="navbar navbar-light navbar-expand-lg border-bottom">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'main:index' %}">GAG</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                    <li class="nav-item dropdown no-arrow"> <a class="nav-link" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="user-avatar rounded-circle" src="{{ request.user.avatar }}"> </a>
+                        <div class="dropdown-menu dropdown-menu-left shadow" aria-labelledby="userDropdown">
+                            <a class="dropdown-item" href="{% url 'client:profile' %}">
+                                <i class="bi bi-person mr-2"></i>{{ profile }}</a>
+                            <a class="dropdown-item" href="{% url 'client:logout' %}">
+                                <i class="bi bi-person-x mr-2"></i>{{ logout }}</a>
+                        </div>
+                    </li>
+                    <li class="pt-2 ml-2 nav-item{% if crn == "main:upload" %} active{% endif %}">
+                        <a href="{% url 'main:upload' %}" type="submit" class="rounded-pill btn btn-primary"><i class="bi bi-upload"></i>{{ upload }}</a>
+                    <li>
+
+                    <li class="pt-2 ml-2 dropdown"><a class="lang-link" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% if LANGUAGE_CODE == 'uz'%}🇺🇿{% else %}🇷🇺{% endif %}</a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                            <a class="dropdown-item" href="/uz{{ request.get_full_path|slice:'3:' }}">🇺🇿 O'zbek</a>
+                            <a class="dropdown-item" href="/ru{{ request.get_full_path|slice:'3:' }}">🇷🇺 Русский</a>
+                        </div>
+                    </li>
+
+                {% else %}
+                    <li class="nav-item{% if crn == "client:login" %} active{% endif %}">
+                        <a class="nav-link" href="{% url 'client:login' %}">{{ signin }}</a>
+                    </li>
+                    <li class="nav-item{% if crn == "client:registration" %} active{% endif %}">
+                        <a href="{% url 'client:registration' %}" type="submit" class="rounded-pill btn btn-primary"></i>{{ register }}</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

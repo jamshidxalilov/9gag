@@ -5,6 +5,8 @@
 {% trans "Tizimga kirish" as signin %}
 {% trans "Ro'yxatdan o'tish" as register %}
 {% trans "Yuklash" as upload %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_available_languages as LANGUAGES %}
 <!doctype html>
 <html lang="uz">
 <head>
@@ -18,77 +20,10 @@
     <link rel="stylesheet" href="{% static 'css/main.css' %}" />
 </head>
 <body>
-    <nav class="navbar navbar-light navbar-expand-lg border-bottom">
-        <a class="navbar-brand" href="{% url 'main:index' %}">GAG</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav ml-auto">
-                {% if user.is_authenticated %}
-                    <li class="nav-item dropdown no-arrow"> <a class="nav-link" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="user-avatar rounded-circle" src="{{ request.user.avatar }}"> </a>
-                        <div class="dropdown-menu dropdown-menu-left shadow" aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="{% url 'client:profile' %}">
-                                <i class="bi bi-person mr-2"></i>{{ profile }}</a>
-                            <a class="dropdown-item" href="{% url 'client:logout' %}">
-                                <i class="bi bi-person-x mr-2"></i>{{ logout }}</a>
-                        </div>
-                    </li>
-                    <li class="pt-2 ml-2 nav-item{% if crn == "main:upload" %} active{% endif %}">
-                        <a href="{% url 'main:upload' %}" type="submit" class="rounded-pill btn btn-primary"><i class="bi bi-upload"></i>{{ upload }}</a>
-                    </li>
-{#                    <form action="{% url 'set_language' %}" method="post">{% csrf_token %}#}
-{#                        <input name="next" type="hidden" value="{{ redirect_to }}">#}
-{#                            <select name="language">#}
-{#                                {% get_current_language as LANGUAGE_CODE %}#}
-{#                                {% get_available_languages as LANGUAGES %}#}
-{#                                {% get_language_info_list for LANGUAGES as languages %}#}
-{#                                {% for language in languages %}#}
-{#                                    <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>#}
-{#                                        {{ language.name_local }} ({{ language.code }})#}
-{#                                    </option>#}
-{#                                {% endfor %}#}
-{#                            </select>#}
-{#                        <input type="submit" value="Go">#}
-{#                    </form>#}
-{#                    <li class="nav-item dropdown no-arrow"> <a class="nav-link" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="user-avatar rounded-circle" src="{{ request.user.avatar }}"> </a>#}
-{#                        <div class="dropdown-menu dropdown-menu-right shadow" aria-labelledby="userDropdown">#}
-{#                            <a class="dropdown-item" href="{% url 'client:profile' %}">#}
-{#                                <i class="bi bi-person mr-2"></i>{{ profile }}</a>#}
-{#                            <a class="dropdown-item" href="{% url 'client:logout' %}">#}
-{#                                <i class="bi bi-person-x mr-2"></i>{{ logout }}</a>#}
-{#                        </div>#}
-{#                    </li>#}
-{#                    <li class="nav-item{% if crn == "client:logout" %} active{% endif %}">#}
-{#                        <a class="nav-link" href="{% url 'client:logout' %}">Chiqish</a>#}
-{#                    </li>#}
-                {% else %}
-                    <li class="nav-item{% if crn == "client:login" %} active{% endif %}">
-                        <a class="nav-link" href="{% url 'client:login' %}">{{ signin }}</a>
-                    </li>
-                    <li class="nav-item{% if crn == "client:registration" %} active{% endif %}">
-                        <a href="{% url 'client:registration' %}" type="submit" class="rounded-pill btn btn-primary"></i>{{ register }}</a>
-                    </li>
-                {% endif %}
-            </ul>
-        </div>
-    </nav>
-    <div class="container pt-4">
-        {% if messages %}
-            <div class="messages">
-                {% for message in messages %}
-                    <div class="{{ message.tags }} alert-dismissible fade show">
-                        {{ message }}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                {% endfor %}
-            </div>
-        {% endif %}
-
-        {% block content %}{% endblock %}
-    </div>
+    {% block body %}{% endblock %}
+    {% include 'layouts/_header.html' %}
+    {% block content %}{% endblock %}
+    {% include 'layouts/_messages.html' %}
 
     <script src="{% static 'vendor/jquery.js' %}"></script>
     <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.js' %}"></script>
