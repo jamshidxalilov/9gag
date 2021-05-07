@@ -29,7 +29,7 @@ class RegistrationView(View):
             user.set_password(form.cleaned_data['password'])
             user.save()
 
-            messages.success(request, "Ro'yxatdan muvaffaqiyatli o'tdingiz.")
+            messages.success(request, _("Ro'yxatdan muvaffaqiyatli o'tdingiz."))
 
             return redirect('main:index')
 
@@ -46,7 +46,7 @@ class ClientLogin(View):
 
         def dispatch(self, request, *args, **kwargs):
             if request.user.is_authenticated:
-                messages.warning(request, "Siz tizimga kirgansiz!")
+                messages.warning(request, _("Siz tizimga kirgansiz!"))
                 return redirect('main:index')
 
             return super(ClientLogin, self).dispatch(request, *args, **kwargs)
@@ -64,7 +64,7 @@ class ClientLogin(View):
             if user is not None:
                 login(request, user)
 
-                messages.success(request, _("Xush kelibsiz, {}".format(user.username)))
+                messages.success(request, _("Xush kelibsiz, {}").format(user.username))
 
                 return redirect('main:index')
 
@@ -78,7 +78,7 @@ class ClientLogin(View):
 
 class ClientLogout(LoginRequiredMixin, View):
     def get(self, request):
-        messages.success(request, _("Xayr {}".format(request.user.username)))
+        messages.success(request, _("Xayr {}").format(request.user.username))
         logout(request)
 
         return redirect('main:index')

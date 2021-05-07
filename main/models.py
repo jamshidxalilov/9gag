@@ -1,6 +1,7 @@
 from django.db import models
 from gag.mixins import TranslateMixin
 from gag.helpers import UploadTo
+from django.utils.translation import gettext_lazy as _
 
 class Category(TranslateMixin, models.Model):
     translate_fields = ['name']
@@ -17,9 +18,9 @@ class Category(TranslateMixin, models.Model):
 
 class Post(models.Model):
     user = models.ForeignKey('client.User', on_delete=models.RESTRICT)
-    category = models.ForeignKey('Category', on_delete=models.RESTRICT)
-    comment = models.TextField(verbose_name='Izoh')
-    file = models.FileField(verbose_name="Rasm/Video", upload_to=UploadTo("post"))
+    category = models.ForeignKey('Category', on_delete=models.RESTRICT, verbose_name=_("Kategoriya"))
+    comment = models.TextField(verbose_name=_('Izoh'))
+    file = models.FileField(verbose_name=_("Rasm/Video"), upload_to=UploadTo("post"))
     like = models.IntegerField(default=0)
     dislike = models.IntegerField(default=0)
     added_at = models.DateTimeField(auto_now_add=True)

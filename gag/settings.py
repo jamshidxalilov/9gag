@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-
+from django.utils.translation import gettext_lazy as _
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 from django.contrib import messages
 
@@ -51,7 +51,8 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware'
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware'
 ]
 
 ROOT_URLCONF = 'gag.urls'
@@ -155,6 +156,16 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 INTERNAL_IPS = [
     '127.0.0.1'
+]
+
+
+LANGUAGES = [
+    ('uz', _("🇺🇿 O'zbek")),
+    ('ru', _('🇷🇺 Русский')),
+]
+
+LOCALE_PATHS = [
+    BASE_DIR / 'locale'
 ]
 
 MEDIA_URL = '/uploads/'
