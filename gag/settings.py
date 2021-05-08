@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main',
     'client',
-    'crispy_forms'
+    'crispy_forms',
+    'bootstrap_pagination',
 ]
 
 MIDDLEWARE = [

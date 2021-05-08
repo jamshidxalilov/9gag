@@ -22,8 +22,8 @@
 <body>
     {% block body %}{% endblock %}
     {% include 'layouts/_header.html' %}
-    {% block content %}{% endblock %}
     {% include 'layouts/_messages.html' %}
+    {% block content %}{% endblock %}
 
     <script src="{% static 'vendor/jquery.js' %}"></script>
     <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.js' %}"></script>
