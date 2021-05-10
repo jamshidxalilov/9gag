@@ -1,17 +1,32 @@
 {% extends 'layouts/base.html' %}
+{% load static %}
+{% load bootstrap_pagination %}
 {% block content %}
 
+    <div class="container">
+        <div class="row">
+            <div class="col-2 pt-3">
+                <div class="row">KATEGORIYALAR</div>
 
-<img class="img-fluid" src="{% static 'img/banner.gif' %}" />
-<div class="row">
-    <div class="col-9 pt-3">
+                {% for cat in categories %}
+                    <div class="row"><img class="cat-img mt-1 mr-1" src="/uploads/{{ cat.image }}"/>{{ cat.name }}</div>
+                {% endfor %}
+            </div>
+            <div class="col-10">
+                <img class="img-fluid" src="{% static 'img/banner.gif' %}"/>
+                <div class="row">
+                    <div class="col-9 pt-3">
+                        {% block banner_content %}
+                        {% endblock %}
+                    </div>
+                    <div class="col-3">
+                        <img class="img-fluid pt-3" src="{% static 'img/small-banner.png' %}"/>
+                        <img class="img-fluid pt-3" src="{% static 'img/small-banner.png' %}"/>
+                        <img class="img-fluid pt-3" src="{% static 'img/small-banner.png' %}"/>
+                    </div>
+                </div>
 
+            </div>
+        </div>
     </div>
-    <div class="col-3">
-        <img class="img-fluid pt-3" src="{% static 'img/small-banner.png' %}" />
-        <img class="img-fluid pt-3" src="{% static 'img/small-banner.png' %}" />
-        <img class="img-fluid pt-3" src="{% static 'img/small-banner.png' %}" />
-    </div>
-</div>
-
 {% endblock %}

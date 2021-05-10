@@ -5,6 +5,7 @@
 {% trans "Tizimga kirish" as signin %}
 {% trans "Ro'yxatdan o'tish" as register %}
 {% trans "Yuklash" as upload %}
+{% trans "Izoh qoldirish" as izoh %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_available_languages as LANGUAGES %}
 <!doctype html>
@@ -21,8 +22,9 @@
 </head>
 <body>
     {% block body %}{% endblock %}
+
     {% include 'layouts/_header.html' %}
-    {% include 'layouts/_messages.html' %}
+
     {% block content %}{% endblock %}
 
     <script src="{% static 'vendor/jquery.js' %}"></script>

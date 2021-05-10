@@ -1,7 +1,5 @@
 
-
-{% for post in object_list %}
-    <div class="col">
+<div class="col">
         <div class="row">
             <img class="cat-img mt-1 mr-1" src="{{ MEDIA_URL }}{{ post.category.image.url }}">{{ post.category.name }}
             <img class="cat-img mt-1 ml-4 mr-1" src="{{ MEDIA_URL }}{{ post.user.avatar }}">{{ post.user }}
@@ -10,15 +8,20 @@
     {% if post.is_image %}
         <div class="col">
             <div class="row">
-                <img class="card-img" src="{{ MEDIA_URL }}{{ post.file.url }}" />
+                <img class="card-img" src="{{ MEDIA_URL }}{{ post.file.url }}"/>
             </div>
             <div class="row mt-2">{{ post.comment }}</div>
         </div>
         <div class="col">
             <div class="row">
-                <div class="border px-3 py-1 mt-2 mr-2 "><a class="text-black-50" href="{% url 'main:like' 'like' post.id %}?return={{ request.get_full_path }}"><i class="bi bi-hand-thumbs-up"></i></a> {{ post.like }}</div>
-                <div class="border px-3 py-1 mt-2 mr-2 "><a class="text-black-50" href="{% url 'main:like' 'dislike' post.id %}?return{{ request.get_full_path }}"><i class="bi bi-hand-thumbs-down"></i></a> {{ post.dislike }}</div>
-                <i class="border px-2 py-1 mt-2 bi bi-chat-left-fill"></i>
+                <div class="border px-3 py-1 mt-2 mr-2 "><a class="text-black-50"
+                                                            href="{% url 'main:like' 'like' post.id %}?return={{ request.get_full_path }}"><i
+                        class="bi bi-hand-thumbs-up"></i></a> {{ post.like }}</div>
+                <div class="border px-3 py-1 mt-2 mr-2 "><a class="text-black-50"
+                                                            href="{% url 'main:like' 'dislike' post.id %}?return{{ request.get_full_path }}"><i
+                        class="bi bi-hand-thumbs-down"></i></a> {{ post.dislike }}</div>
+                <div class="border px-2 py-1 mt-2 "><a class="text-black-50" href="{% url 'main:comment' post.id %}"><i
+                        class="bi bi-chat-left-fill"></i></a></div>
             </div>
         </div>
         <hr>
@@ -33,9 +36,14 @@
         </div>
         <div class="col">
             <div class="row">
-                <div class="border px-3 py-1 mt-2 mr-2 "><a class="text-black-50" href="{% url 'main:like' 'like' post.id %}?return={{ request.get_full_path }}"><i class="bi bi-hand-thumbs-up"></i></a> {{ post.like }}</div>
-                <div class="border px-3 py-1 mt-2 mr-2 "><a class="text-black-50" href="{% url 'main:like' 'dislike' post.id %}?return{{ request.get_full_path }}"><i class="bi bi-hand-thumbs-down"></i></a> {{ post.dislike }}</div>
-                <i class="border px-2 py-1 mt-2 bi bi-chat-left-fill"></i>
+                <div class="border px-3 py-1 mt-2 mr-2 "><a class="text-black-50"
+                                                            href="{% url 'main:like' 'like' post.id %}?return={{ request.get_full_path }}"><i
+                        class="bi bi-hand-thumbs-up"></i></a> {{ post.like }}</div>
+                <div class="border px-3 py-1 mt-2 mr-2 "><a class="text-black-50"
+                                                            href="{% url 'main:like' 'dislike' post.id %}?return{{ request.get_full_path }}"><i
+                        class="bi bi-hand-thumbs-down"></i></a> {{ post.dislike }}</div>
+                <div class="border px-2 py-1 mt-2 "><a class="text-black-50" href="{% url 'main:comment' post.id %}"><i
+                        class="bi bi-chat-left-fill"></i></a></div>
             </div>
         </div>
         <hr>
@@ -50,13 +58,15 @@
         </div>
         <div class="col">
             <div class="row">
-                <div class="border px-3 py-1 mt-2 mr-2 "><a class="text-black-50" href="{% url 'main:like' 'like' post.id %}?return={{ request.get_full_path }}"><i class="bi bi-hand-thumbs-up"></i></a> {{ post.like }}</div>
-                <div class="border px-3 py-1 mt-2 mr-2 "><a class="text-black-50" href="{% url 'main:like' 'dislike' post.id %}?return{{ request.get_full_path }}"><i class="bi bi-hand-thumbs-down"></i></a> {{ post.dislike }}</div>
-                <i class="border px-2 py-1 mt-2 bi bi-chat-left-fill"></i>
+                <div class="border px-3 py-1 mt-2 mr-2 "><a class="text-black-50"
+                                                            href="{% url 'main:like' 'like' post.id %}?return={{ request.get_full_path }}"><i
+                        class="bi bi-hand-thumbs-up"></i></a> {{ post.like }}</div>
+                <div class="border px-3 py-1 mt-2 mr-2 "><a class="text-black-50"
+                                                            href="{% url 'main:like' 'dislike' post.id %}?return{{ request.get_full_path }}"><i
+                        class="bi bi-hand-thumbs-down"></i></a> {{ post.dislike }}</div>
+                <div class="border px-2 py-1 mt-2 "><a class="text-black-50" href="{% url 'main:comment' post.id %}"><i
+                        class="bi bi-chat-left-fill"></i></a></div>
             </div>
         </div>
         <hr>
     {% endif %}
-{% empty %}
-    <div class="h3">Birorta ham ma'lumot topilmadi</div>
-{% endfor %}

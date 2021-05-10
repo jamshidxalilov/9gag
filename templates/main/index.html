@@ -1,92 +1,13 @@
-{% extends 'layouts/base.html' %}
-{% load static %}
+{% extends 'layouts/banner.html' %}
 {% load bootstrap_pagination %}
-{% block content %}
+{% block banner_content %}
 
-<div class="container">
-    <div class="row">
-        <div class="col-2 pt-3">
-            <div class="row">KATEGORIYALAR</div>
+{% for post in object_list %}
+    {% include 'widgets/post.html' with post=post %}
+    {% empty %}
+    <div class="h3">Birorta ham ma'lumot topilmadi</div>
+{% endfor %}
 
-            {% for cat in categories %}
-                <div class="row"><img class="cat-img mt-1 mr-1" src="/uploads/{{ cat.image }}" />{{ cat.name }}</div>
-            {% endfor %}
-        </div>
-        <div class="col-10">
-            <img class="img-fluid" src="{% static 'img/banner.gif' %}" />
-                <div class="row">
-                    <div class="col-9 pt-3">
-                        {% for post in object_list %}
-                            <div class="col">
-                                <div class="row">
-                                    <img class="cat-img mt-1 mr-1" src="{{ MEDIA_URL }}{{ post.category.image.url }}">{{ post.category.name }}
-                                    <img class="cat-img mt-1 ml-4 mr-1" src="{{ MEDIA_URL }}{{ post.user.avatar }}">{{ post.user }}
-                                </div>
-                            </div>
-                            {% if post.is_image %}
-                                <div class="col">
-                                    <div class="row">
-                                        <img class="card-img" src="{{ MEDIA_URL }}{{ post.file.url }}" />
-                                    </div>
-                                    <div class="row mt-2">{{ post.comment }}</div>
-                                </div>
-                                <div class="col">
-                                    <div class="row">
-                                        <div class="border px-3 py-1 mt-2 mr-2 "><a class="text-black-50" href="{% url 'main:like' 'like' post.id %}?return={{ request.get_full_path }}"><i class="bi bi-hand-thumbs-up"></i></a> {{ post.like }}</div>
-                                        <div class="border px-3 py-1 mt-2 mr-2 "><a class="text-black-50" href="{% url 'main:like' 'dislike' post.id %}?return{{ request.get_full_path }}"><i class="bi bi-hand-thumbs-down"></i></a> {{ post.dislike }}</div>
-                                        <i class="border px-2 py-1 mt-2 bi bi-chat-left-fill"></i>
-                                    </div>
-                                </div>
-                                <hr>
-                            {% elif post.is_video %}
-                                <div class="col">
-                                    <div class="row">
-                                        <video class="embed-responsive embed-responsive-16by9" controls autoplay>
-                                            <source class="card-img" src="{{ MEDIA_URL }}{{ post.file.url }}" type="video/mp4">
-                                        </video>
-                                    </div>
-                                    <div class="row mt-2">{{ post.comment }}</div>
-                                </div>
-                                <div class="col">
-                                    <div class="row">
-                                        <div class="border px-3 py-1 mt-2 mr-2 "><a class="text-black-50" href="{% url 'main:like' 'like' post.id %}?return={{ request.get_full_path }}"><i class="bi bi-hand-thumbs-up"></i></a> {{ post.like }}</div>
-                                        <div class="border px-3 py-1 mt-2 mr-2 "><a class="text-black-50" href="{% url 'main:like' 'dislike' post.id %}?return{{ request.get_full_path }}"><i class="bi bi-hand-thumbs-down"></i></a> {{ post.dislike }}</div>
-                                        <i class="border px-2 py-1 mt-2 bi bi-chat-left-fill"></i>
-                                    </div>
-                                </div>
-                                <hr>
-                            {% elif post.is_audio %}
-                                <div class="col">
-                                    <div class="row">
-                                        <audio controls>
-                                            <source src="{{ MEDIA_URL }}{{ post.file.url }}" type="audio/ogg">
-                                        </audio>
-                                    </div>
-                                    <div class="row mt-2">{{ post.comment }}</div>
-                                </div>
-                                <div class="col">
-                                    <div class="row">
-                                        <div class="border px-3 py-1 mt-2 mr-2 "><a class="text-black-50" href="{% url 'main:like' 'like' post.id %}?return={{ request.get_full_path }}"><i class="bi bi-hand-thumbs-up"></i></a> {{ post.like }}</div>
-                                        <div class="border px-3 py-1 mt-2 mr-2 "><a class="text-black-50" href="{% url 'main:like' 'dislike' post.id %}?return{{ request.get_full_path }}"><i class="bi bi-hand-thumbs-down"></i></a> {{ post.dislike }}</div>
-                                        <i class="border px-2 py-1 mt-2 bi bi-chat-left-fill"></i>
-                                    </div>
-                                </div>
-                                <hr>
-                            {% endif %}
-                            {% empty %}
-                                <div class="h3">Birorta ham ma'lumot topilmadi</div>
-                            {% endfor %}
-                        </div>
-                    <div class="col-3">
-                        <img class="img-fluid pt-3" src="{% static 'img/small-banner.png' %}" />
-                        <img class="img-fluid pt-3" src="{% static 'img/small-banner.png' %}" />
-                        <img class="img-fluid pt-3" src="{% static 'img/small-banner.png' %}" />
-                    </div>
-                </div>
-                    {% bootstrap_paginate page_obj %}
-            </div>
-        </div>
-    </div>
+{% bootstrap_paginate page_obj %}
 
-</div>
 {% endblock %}
