@@ -1,23 +1,26 @@
 {% extends 'layouts/base.html' %}
-{% load static %}
-{% load bootstrap_pagination %}
-{% block content %}
+{% load static i18n %}
 
+{% block content %}
     <div class="container">
         <div class="row">
-            <div class="col-2 pt-3">
-                <div class="row">KATEGORIYALAR</div>
-
+            <div class="col-lg-2">
+                <div class="h5 text-uppercase text-muted mt-3">{% translate "Kategoriyalar" %}</div>
                 {% for cat in categories %}
-                    <div class="row"><img class="cat-img mt-1 mr-1" src="/uploads/{{ cat.image }}"/>{{ cat.name }}</div>
+                    <a data-id="{{ cat.id }}"
+                        class="d-flex align-items-center text-black-50 cat-link" href="{% url 'main:cat' cat.id %}">
+                        <span class="d-inline-block cat-img cover mr-2" style="background-image: url('{{ cat.image.url }}')"></span>
+                        <span class="cat-name">{{ cat.name }}</span>
+                    </a>
+{#                    <div class="row"><img class="cat-img mt-1 mr-1" src="/uploads/{{ cat.image }}"/>{{ cat.name }}</div>#}
                 {% endfor %}
             </div>
-            <div class="col-10">
+            <div class="col-lg-10">
                 <img class="img-fluid" src="{% static 'img/banner.gif' %}"/>
+
                 <div class="row">
-                    <div class="col-9 pt-3">
-                        {% block banner_content %}
-                        {% endblock %}
+                    <div class="col-9 pt-3" id="id_content">
+                        {% block banner_content %}{% endblock %}
                     </div>
                     <div class="col-3">
                         <img class="img-fluid pt-3" src="{% static 'img/small-banner.png' %}"/>

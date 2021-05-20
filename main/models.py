@@ -54,3 +54,4 @@ class PostComment(models.Model):
     added_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     comment = models.TextField(verbose_name=_('Izoh'))
+

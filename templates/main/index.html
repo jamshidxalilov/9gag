@@ -1,12 +1,12 @@
 {% extends 'layouts/banner.html' %}
 {% load bootstrap_pagination %}
 {% block banner_content %}
-
-{% for post in object_list %}
-    {% include 'widgets/post.html' with post=post %}
+    <h1 class="text-muted mt-3">{{ cat.name }}</h1>
+    {% for post in object_list %}
+        {% include 'widgets/post.html' with post=post %}
     {% empty %}
-    <div class="h3">Birorta ham ma'lumot topilmadi</div>
-{% endfor %}
+        <div class="h1 text-muted">Birorta ham maqola topilmadi</div>
+    {% endfor %}
 
 {% bootstrap_paginate page_obj %}
 
