@@ -1,7 +1,11 @@
 {% extends 'layouts/banner.html' %}
 {% load bootstrap_pagination %}
 {% block banner_content %}
+{#    {% for cat in categories %}#}
+{#    <span class="d-inline-block cat-img cover mr-2" style="background-image: url('{{ cat.image.url }}')"></span>#}
+{#    {% endfor %}#}
     <h1 class="text-muted mt-3">{{ cat.name }}</h1>
+    <span class="d-inline-block cat-img cover mr-2" style="background-image: url('{{ cat.image }}')"></span>
     {% for post in object_list %}
         {% include 'widgets/post.html' with post=post %}
     {% empty %}

@@ -38,7 +38,6 @@ class MainIndex(View):
 
 class MainCatAjax(View):
     def get(self, request, pk):
-        time.sleep(3)
         return HttpResponse("<div>id = {}</div>".format(pk))
 
 class UploadPost(LoginRequiredMixin, CreateView):

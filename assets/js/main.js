@@ -9,6 +9,7 @@
 $(".cat-link").on("click", function(e) {
     let catid = $(this).data('id')
     let catname = $(this).find(".cat-name").html()
+
     let header = $("#id_content > h1").first()
         if (header.length > 0) {
             header.html(catname)
@@ -23,7 +24,7 @@ $(".cat-link").on("click", function(e) {
 
     }
 
-    set_result("<div>Loading...</div>")
+    // set_result("<div>Loading...</div>")
 
     $.ajax({
         method: "GET",
