@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-07 12:00+0500\n"
+"POT-Creation-Date: 2021-06-04 16:55+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,7 +38,8 @@ msgstr "Пароль"
 
 #: client/forms.py:23
 msgid "Lotin harflari, sonlar va @/./+/-/_ belgilardan iborat bo'lishi lozim."
-msgstr "Он должен состоять из латинских букв, цифр и символов @ /. / + / - / _."
+msgstr ""
+"Он должен состоять из латинских букв, цифр и символов @ /. / + / - / _."
 
 #: client/views.py:18 templates/layouts/base.html:6
 msgid "Ro'yxatdan o'tish"
@@ -76,33 +77,43 @@ msgstr "Профиль"
 msgid "Saqlash"
 msgstr "Сохранить"
 
-#: gag/settings.py:163
+#: gag/settings.py:165
 msgid "🇺🇿 O'zbek"
 msgstr ""
 
-#: gag/settings.py:164
+#: gag/settings.py:166
 msgid "🇷🇺 Русский"
 msgstr ""
 
-#: main/models.py:21
-msgid "Kategoriya"
-msgstr "Категория"
-
-#: main/models.py:22
+#: main/forms.py:11 main/models.py:24 main/models.py:56
 msgid "Izoh"
 msgstr "Комментарий"
 
+#: main/forms.py:12
+msgid "Rasm"
+msgstr ""
+
 #: main/models.py:23
+msgid "Kategoriya"
+msgstr "Категория"
+
+#: main/models.py:25
 msgid "Rasm/Video"
 msgstr "Изображение/Видео"
 
-#: main/views.py:31 templates/layouts/base.html:7
+#: main/views.py:63 templates/layouts/base.html:7
 msgid "Yuklash"
 msgstr "Скачать"
 
-#: main/views.py:34
+#: main/views.py:68
 msgid "Muvaffaqiyatli qo'shildi."
 msgstr "Успешно добавлено."
+
+#: templates/layouts/banner.html:8
+#, fuzzy
+#| msgid "Kategoriya"
+msgid "Kategoriyalar"
+msgstr "Категория"
 
 #: templates/layouts/base.html:3
 msgid "Profile"
@@ -111,3 +122,7 @@ msgstr "Профиль"
 #: templates/layouts/base.html:4
 msgid "Logout"
 msgstr "Выйти"
+
+#: templates/layouts/base.html:8
+msgid "Izoh qoldirish"
+msgstr ""

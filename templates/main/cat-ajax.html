@@ -1,0 +1,10 @@
+{% load bootstrap_pagination %}
+
+    {% for post in object_list %}
+        {% include 'widgets/post.html' with post=post %}
+    {% empty %}
+        <div class="h1 text-muted">Birorta ham maqola topilmadi</div>
+    {% endfor %}
+    <div class="mt-3">
+        {% bootstrap_paginate page_obj %}
+    </div>

@@ -19,6 +19,9 @@
     <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.css' %}" />
     <link rel="stylesheet" href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" />
     <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+    <script>
+        var VAR_LANG = "{{ LANGUAGE_CODE }}";
+    </script>
 </head>
 <body>
     {% block body %}{% endblock %}
@@ -27,6 +30,7 @@
 
     {% block content %}{% endblock %}
 
+    <script src="{% url 'javascript-catalog' %}"></script>
     <script src="{% static 'vendor/jquery.js' %}"></script>
     <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.js' %}"></script>
     <script src="{% static 'js/main.js' %}"></script>

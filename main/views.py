@@ -38,7 +38,18 @@ class MainIndex(View):
 
 class MainCatAjax(View):
     def get(self, request, pk):
-        return HttpResponse("<div>id = {}</div>".format(pk))
+        time.sleep(1)
+        query = Post.objects.order_by('-id')
+        if pk is not None:
+            query = query.filter(category_id=pk)
+
+        paginator = Paginator(query.all(), 1)
+        page = paginator.get_page(request.GET.get('page'))
+        return render(request, 'main/cat-ajax.html', {
+            'object_list': page.object_list,
+            'page_obj': page
+        })
+
 
 class UploadPost(LoginRequiredMixin, CreateView):
     model = Post
