@@ -7,20 +7,20 @@
 // })
 
 $(".cat-link").on("click", function(e) {
-    let catid = $(this).data('id')
-    let catname = $(this).find(".cat-name").html()
-
-    if (!confirm(gettext("Ajaxni qo'llasam bo'ladimi?"))) {
-        return true
-    }
-
-    let header = $("#id_content > h1").first()
-        if (header.length > 0) {
-            header.html(catname)
-        } else {
-            let h1 = $("<h1/>").addClass("text-muted mt-3").html(catname)
-            $("#id_content").prepend(h1)
-        }
+    // let catid = $(this).data('id')
+    // let catname = $(this).find(".cat-name").html()
+    //
+    // if (!confirm(gettext("Ajaxni qo'llasam bo'ladimi?"))) {
+    //     return true
+    // }
+    //
+    // let header = $("#id_content > h1").first()
+    //     if (header.length > 0) {
+    //         header.html(catname)
+    //     } else {
+    //         let h1 = $("<h1/>").addClass("text-muted mt-3").html(catname)
+    //         $("#id_content").prepend(h1)
+    //     }
 
     function set_result(result) {
         $("#id_content > h1").nextAll().remove()

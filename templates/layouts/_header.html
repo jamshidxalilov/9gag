@@ -18,7 +18,7 @@
                         </div>
                     </li>
                     <li class="pt-2 ml-2 nav-item{% if crn == "main:upload" %} active{% endif %}">
-                        <a href="{% url 'main:upload' %}" type="submit" class="rounded-pill btn btn-primary"><i class="bi bi-upload"></i>{{ upload }}</a>
+                        <a href="{% url 'main:upload' %}" type="submit" class="btn btn-primary"><i class="bi bi-upload"></i>{{ upload }}</a>
                     <li>
 
                     <li class="pt-2 ml-2 dropdown"><a class="lang-link" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% if LANGUAGE_CODE == 'uz'%}🇺🇿{% else %}🇷🇺{% endif %}</a>
@@ -33,7 +33,7 @@
                         <a class="nav-link" href="{% url 'client:login' %}">{{ signin }}</a>
                     </li>
                     <li class="nav-item{% if crn == "client:registration" %} active{% endif %}">
-                        <a href="{% url 'client:registration' %}" type="submit" class="rounded-pill btn btn-primary"></i>{{ register }}</a>
+                        <a href="{% url 'client:registration' %}" type="submit" class="btn btn-primary"></i>{{ register }}</a>
                     </li>
                 {% endif %}
             </ul>
